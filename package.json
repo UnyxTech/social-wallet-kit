@@ -1,0 +1,51 @@
+{
+  "name": "social-wallet-sdk-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3002 next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@nivo/line": "^0.84.0",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-menubar": "^1.0.4",
+    "@react-oauth/google": "^0.12.1",
+    "@tanstack/react-query": "^4.36.1",
+    "@tomo-inc/social-wallet-sdk": "^1.0.0",
+    "axios": "^1.6.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "cmdk": "^0.2.0",
+    "date-fns": "^2.30.0",
+    "lucide-react": "^0.294.0",
+    "next": "14.0.3",
+    "react": "^18",
+    "react-day-picker": "^8.9.1",
+    "react-dom": "^18",
+    "react-intersection-observer": "^9.5.3",
+    "react-player": "^2.13.0",
+    "react-use": "^17.4.2",
+    "swiper": "^11.0.5",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/video-react": "^0.15.5",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
