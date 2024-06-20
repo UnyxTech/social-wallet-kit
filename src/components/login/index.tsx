@@ -17,16 +17,12 @@ const LoginComp = (props: iLoginComp) => {
   const [email, setEmail] = useState<string>("");
   const tomoSDK = useTomoSDK()
 
-  const login = useGoogleLogin({
-    flow: 'auth-code',
-    onSuccess: (codeResponse: Omit<CodeResponse, 'error' | 'error_description' | 'error_uri'>) => {
-      console.log(codeResponse)
-      tomoSDK.loginByGoogle(codeResponse?.code).then((data: any) => {
-        console.log('login result:', data)
-        setStep(3)
-      })
-    },
-  });
+  const login = async () => {
+    const ret = await tomoSDK.login('google')
+    if (ret) {
+      setStep(3)
+    }
+  };
 
   const isValid = () => {
     if (!email) {

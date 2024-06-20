@@ -30,8 +30,8 @@ dependencies:
     specifier: ^4.36.1
     version: 4.36.1(react-dom@18.3.1)(react@18.3.1)
   '@tomo-inc/social-wallet-sdk':
-    specifier: ^1.0.0
-    version: 1.0.0
+    specifier: ^1.0.1
+    version: 1.0.1
   axios:
     specifier: ^1.6.2
     version: 1.7.2
@@ -1727,8 +1727,8 @@ packages:
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
-  /@tomo-inc/social-wallet-sdk@1.0.0:
-    resolution: {integrity: sha512-iJdpFhB2HgQZAE97YAtsPkJTjrmoAXhkIryK6AhlZ+ftSoKrF9hNdbBrbRKxlKbUGM+LyFRtoL292qz3tWuL5g==}
+  /@tomo-inc/social-wallet-sdk@1.0.1:
+    resolution: {integrity: sha512-6wTIkrd98ulzsYIO3sxTH23sUKPQn7ZQIGPXKEk9/H7Ig6PZK1uPgBVD3itBxpu0pfcO4QDtxApU7iWWXI+7wg==}
     dependencies:
       '@types/crypto-js': 4.2.0
       axios: 1.7.2
