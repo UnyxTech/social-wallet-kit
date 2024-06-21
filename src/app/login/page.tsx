@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { TButton } from "@/components/tButton";
 import { SignInDialog } from "@/components/dialog/signIn";
+import { useUserStore } from "@/store/user";
+import { shortAddress } from "@/lib/utils";
 interface IProps {}
 
 const Login: React.FC<IProps> = () => {
+  const address = useUserStore((state) => state.address);
   const [openSignIn, setOpenSignIn] = useState<boolean>(false);
 
   return (
@@ -15,7 +18,7 @@ const Login: React.FC<IProps> = () => {
           type="blue"
           onClick={() => setOpenSignIn(true)}
         >
-          Connect Wallet
+          {address ? shortAddress(address) : "Connect Wallet"}
         </TButton>
       </div>
       <SignInDialog open={openSignIn} onClose={() => setOpenSignIn(false)} />

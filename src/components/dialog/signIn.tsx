@@ -3,8 +3,15 @@ import { TButton } from "../tButton";
 import LoginComp from "@/components/login";
 import CodeVerifyComp from "@/components/login/codeVerify";
 import SuccessComp from "@/components/login/success";
-import { cn } from "@/lib/utils";
+import {
+  WalletItem,
+  WalletType,
+  cn,
+  connectToWallet,
+  walletList,
+} from "@/lib/utils";
 import { useState } from "react";
+import { useUserStore } from "@/store/user";
 
 interface iSignInDialog {
   className?: string;
@@ -17,38 +24,7 @@ export function SignInDialog({
   onClose,
   ...props
 }: iSignInDialog & any) {
-  const walletList = [
-    {
-      id: 1,
-      icon: "/images/tomo_social.svg",
-      name: "Tomo Social",
-    },
-    {
-      id: 2,
-      icon: "/images/tomo_wallet.svg",
-      name: "Tomo Wallet",
-    },
-    {
-      id: 3,
-      icon: "/images/metamask_wallet.svg",
-      name: "Metamask",
-    },
-    {
-      id: 4,
-      icon: "/images/okx_wallet.svg",
-      name: "OKX Wallet",
-    },
-    {
-      id: 5,
-      icon: "/images/trust_wallet.svg",
-      name: "Trust Wallet",
-    },
-    {
-      id: 6,
-      icon: "/images/coinbase.svg",
-      name: "Coinbase",
-    },
-  ];
+  const setAddress = useUserStore((state) => state.setAddress);
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
 
@@ -67,8 +43,15 @@ export function SignInDialog({
             <div className="text-white text-[18px] font-[SFBold] py-[18px]">
               SIGN IN
             </div>
-            {walletList.map((wallet, index) => (
+            {walletList.map((wallet: WalletItem, index) => (
               <div
+                onClick={async () => {
+                  if (index !== 0 && wallet.walletType) {
+                    const address = await connectToWallet(wallet.walletType);
+                    onClose();
+                    setAddress(address);
+                  }
+                }}
                 className={cn(
                   "flex items-center gap-3 px-[6px] py-[10px] cursor-pointer rounded-[12px] border-[1px] border-solid border-transparent hover:border-[rgba(255,255,255,0.04)] hover:bg-[rgba(122,112,255,0.20)]",
                   index === 0 &&
