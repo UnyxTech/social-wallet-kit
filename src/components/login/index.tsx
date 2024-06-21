@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { useUserStore } from "@/store/user";
 import { TInput } from "@/components/input/tInput";
 import { TButton } from "@/components/tButton";
 import { useTomoSDK } from "@/hooks";
@@ -7,17 +8,20 @@ import { useTomoSDK } from "@/hooks";
 interface iLoginComp {
   setStep: (step: number) => void;
   setLoginEmail: (email: string) => void;
+  onClose: () => void;
 }
 const LoginComp = (props: iLoginComp) => {
   const { setStep, setLoginEmail } = props;
   const [email, setEmail] = useState<string>("");
+  const setAddress = useUserStore((state) => state.setAddress);
   const tomoSDK = useTomoSDK();
 
   const login = async () => {
     const ret = await tomoSDK.login('google')
     if (ret) {
-      const address = tomoSDK.getEthAddress()
-      setStep(3)
+      const address = await tomoSDK.getEthAddress()
+      setAddress(address)
+      props.onClose()
     }
   };
 

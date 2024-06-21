@@ -71,10 +71,10 @@ export function SignInDialog({
               alt=""
             />
             {step === 1 && (
-              <LoginComp setStep={setStep} setLoginEmail={setEmail} />
+              <LoginComp setStep={setStep} setLoginEmail={setEmail} onClose={onClose}/>
             )}
             {step === 2 && (
-              <CodeVerifyComp email={email} step={step} setStep={setStep} />
+              <CodeVerifyComp email={email} step={step} setStep={setStep} onClose={onClose} />
             )}
             {step === 3 && <SuccessComp />}
           </div>

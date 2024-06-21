@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { TButton } from "@/components/tButton";
+import { useUserStore } from "@/store/user";
 import EmailCode from "../emailCode";
 import { useTomoSDK } from "@/hooks";
 
@@ -8,10 +9,12 @@ interface iCodeVerifyComp {
   step: number;
   email: string;
   setStep: (step: number) => void;
+  onClose: () => void;
 }
 const CodeVerifyComp = (props: iCodeVerifyComp) => {
-  const { email, step, setStep } = props;
+  const { email, step, setStep, onClose } = props;
   const [code, setCode] = useState<string>("");
+  const setAddress = useUserStore((state) => state.setAddress);
   const [gapTime, setGapTime] = useState<number>(0);
   const [sendInterval, setSendInterval] = useState<any>(undefined);
 
@@ -71,12 +74,12 @@ const CodeVerifyComp = (props: iCodeVerifyComp) => {
 
   const continueFun = async () => {
     const result = await tomoSDK.verifyCode(code);
-    console.log("result:", result);
-
-    const address = await tomoSDK.getEthAddress();
-    console.log("address:", address);
-
-    setStep(3);
+    if (result) {
+      const address = await tomoSDK.getEthAddress();
+      setAddress(address)
+    }
+    
+    onClose();
   };
 
   return (
