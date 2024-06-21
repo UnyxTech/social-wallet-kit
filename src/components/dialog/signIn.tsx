@@ -31,7 +31,7 @@ export function SignInDialog({
     {
       id: 3,
       icon: "/images/metamask_wallet.svg",
-      name: "Metamask Wallet",
+      name: "Metamask",
     },
     {
       id: 4,
@@ -46,7 +46,7 @@ export function SignInDialog({
     {
       id: 6,
       icon: "/images/coinbase.svg",
-      name: "Coinbase Wallet",
+      name: "Coinbase",
     },
   ];
   const [step, setStep] = useState<number>(1);
