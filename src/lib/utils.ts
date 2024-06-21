@@ -13,6 +13,7 @@ export function shortAddress(address?: string, len = 5) {
 export interface WalletItem {
   id: number;
   name: string;
+  existName?: string;
   icon: string;
   walletType?: WalletType;
 }
@@ -27,45 +28,52 @@ export const walletList: WalletItem[] = [
     id: 2,
     icon: "/images/tomo_wallet.svg",
     name: "Tomo Wallet",
+    existName: "Tomo",
     walletType: "tomo",
   },
   {
     id: 3,
     icon: "/images/metamask_wallet.svg",
-    name: "Metamask",
+    name: "MetaMask",
+    existName: "MetaMask",
     walletType: "metamask",
   },
   {
     id: 4,
     icon: "/images/okx_wallet.svg",
     name: "OKX Wallet",
+    existName: "OKX Wallet",
     walletType: "okx",
   },
   {
     id: 5,
     icon: "/images/trust_wallet.svg",
     name: "Trust Wallet",
+    existName: "Trust Wallet",
     walletType: "trust",
   },
   {
     id: 6,
     icon: "/images/coinbase.svg",
     name: "Coinbase",
+    existName: "Coinbase Wallet",
     walletType: "coinbase",
   },
 ];
-export type WalletType = 'metamask'|'trust'|'okx'|'coinbase'|'tomo'
+export type WalletType = "metamask" | "trust" | "okx" | "coinbase" | "tomo";
 export const type2InjectorMap = {
-  metamask: 'ethereum',
-  trust: 'trustwallet',
-  okx: 'okxwallet',
-  coinbase: 'coinbaseWalletExtension',
-  tomo: 'tomo_evm'
-}
+  metamask: "ethereum",
+  trust: "trustwallet",
+  okx: "okxwallet",
+  coinbase: "coinbaseWalletExtension",
+  tomo: "tomo_evm",
+};
 export const connectToWallet = async (walletType: WalletType) => {
   if (!type2InjectorMap[walletType]) {
-    throw new Error('Wallet not install')
+    throw new Error("Wallet not install");
   }
-  const accounts = await ((window as any)[type2InjectorMap[walletType]]).request({ method: 'eth_requestAccounts' })
-  return accounts[0]
-}
+  const accounts = await (window as any)[type2InjectorMap[walletType]].request({
+    method: "eth_requestAccounts",
+  });
+  return accounts[0];
+};

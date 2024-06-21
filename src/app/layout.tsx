@@ -2,6 +2,7 @@
 import "./globals.css";
 import "./fonts.css";
 import { useTomoSDK } from "@/hooks";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,10 @@ export default function RootLayout({
   useTomoSDK();
   return (
     <html lang="en">
-      <body className="h-screen overflow-hidden">{children}</body>
+      <body className="h-screen overflow-hidden">
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

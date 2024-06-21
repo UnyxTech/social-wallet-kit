@@ -1,18 +1,11 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { TButton } from "../tButton";
 import LoginComp from "@/components/login";
 import CodeVerifyComp from "@/components/login/codeVerify";
 import SuccessComp from "@/components/login/success";
-import {
-  WalletItem,
-  WalletType,
-  cn,
-  connectToWallet,
-  walletList,
-} from "@/lib/utils";
-import { useState } from "react";
+import { WalletItem, cn, connectToWallet, walletList } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/user";
-
+import { useToast } from "@/components/ui/use-toast";
 interface iSignInDialog {
   className?: string;
   open: boolean;
@@ -24,14 +17,44 @@ export function SignInDialog({
   onClose,
   ...props
 }: iSignInDialog & any) {
+  const { toast } = useToast();
   const setAddress = useUserStore((state) => state.setAddress);
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
+  const [installWallets, setInstallWallets] = useState<any>();
+
+  const getInstalledWallet = () => {
+    const windowObj: any = window;
+    if (windowObj.ethereum) {
+      let wallets: any = [];
+      const getInstalledWallets = (event: any) => {
+        const arr = [event.detail.info.name];
+        wallets = wallets.concat(arr);
+        if (!!wallets) {
+          setInstallWallets(wallets);
+        } else {
+          setInstallWallets([]);
+        }
+      };
+
+      window.addEventListener("eip6963:announceProvider", getInstalledWallets);
+      window.dispatchEvent(new Event("eip6963:requestProvider"));
+      window.removeEventListener(
+        "eip6963:announceProvider",
+        getInstalledWallets
+      );
+    } else {
+      setInstallWallets([]);
+    }
+  };
+  useEffect(() => {
+    getInstalledWallet();
+  }, []);
 
   return (
     <Dialog
       open={open}
-      onOpenChange={(open) => {
+      onOpenChange={(open: boolean) => {
         if (!open) {
           onClose();
         }
@@ -46,10 +69,28 @@ export function SignInDialog({
             {walletList.map((wallet: WalletItem, index) => (
               <div
                 onClick={async () => {
-                  if (index !== 0 && wallet.walletType) {
-                    const address = await connectToWallet(wallet.walletType);
-                    onClose();
-                    setAddress(address);
+                  try {
+                    if (
+                      !installWallets.find(
+                        (item: string) => item === wallet.existName
+                      )
+                    ) {
+                      toast({
+                        title: "Wallet not install.",
+                        duration: 3000,
+                      });
+                      return;
+                    }
+                    if (index !== 0 && wallet.walletType) {
+                      const address = await connectToWallet(wallet.walletType);
+                      onClose();
+                      setAddress(address);
+                    }
+                  } catch (e) {
+                    toast({
+                      title: "Something error.",
+                      duration: 3000,
+                    });
                   }
                 }}
                 className={cn(
