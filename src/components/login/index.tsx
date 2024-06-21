@@ -16,6 +16,7 @@ const LoginComp = (props: iLoginComp) => {
   const login = async () => {
     const ret = await tomoSDK.login('google')
     if (ret) {
+      const address = tomoSDK.getEthAddress()
       setStep(3)
     }
   };
