@@ -82,7 +82,7 @@ body {
 html,
 body {
   height: 100%;
-  font-family: "Popins";
+  font-family: "SFRegular";
 }
 
 input[type="number"]::-webkit-inner-spin-button,

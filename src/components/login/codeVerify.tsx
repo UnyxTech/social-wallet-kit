@@ -5,21 +5,17 @@ import EmailCode from "../emailCode";
 import { useTomoSDK } from "@/hooks";
 
 interface iCodeVerifyComp {
-  step: number,
-  email: string,
-  setStep: (step: number) => void
+  step: number;
+  email: string;
+  setStep: (step: number) => void;
 }
 const CodeVerifyComp = (props: iCodeVerifyComp) => {
-  const {
-    email,
-    step,
-    setStep
-  } = props;
+  const { email, step, setStep } = props;
   const [code, setCode] = useState<string>("");
   const [gapTime, setGapTime] = useState<number>(0);
   const [sendInterval, setSendInterval] = useState<any>(undefined);
 
-  const tomoSDK = useTomoSDK()
+  const tomoSDK = useTomoSDK();
 
   useEffect(() => {
     if (step === 2) {
@@ -65,7 +61,7 @@ const CodeVerifyComp = (props: iCodeVerifyComp) => {
       }
       const result = await tomoSDK.sendCode(email);
       if (!result) {
-        throw new Error('Failed')
+        throw new Error("Failed");
       }
       startCountdown();
     } catch (e) {
@@ -75,16 +71,16 @@ const CodeVerifyComp = (props: iCodeVerifyComp) => {
 
   const continueFun = async () => {
     const result = await tomoSDK.verifyCode(code);
-    console.log('result:', result)
+    console.log("result:", result);
 
     const address = await tomoSDK.getEthAddress();
-    console.log('address:', address)
+    console.log("address:", address);
 
-    setStep(3)
+    setStep(3);
   };
 
   return (
-    <div className="w-[372px] rounded-[12px] bg-[#151923] p-[32px] z-[10] flex flex-col justify-between">
+    <div className="w-[372px] rounded-[12px] p-[32px] z-[10] flex flex-col justify-between">
       <div className="flex flex-col">
         <Image
           className="mb-[24px] cursor-pointer bg-bgGray rounded-[22px] p-[10px]"
@@ -94,12 +90,11 @@ const CodeVerifyComp = (props: iCodeVerifyComp) => {
           alt=""
           onClick={() => setStep(1)}
         />
-        <div className="mb-[16px] text-[24px] font-[PopinsMedium] text-white">
+        <div className="mb-[16px] text-[24px] font-[SFMedium] text-white">
           Enter code
         </div>
         <div className="text-[14px] text-white6 mb-[32px]">
-          A 4-digit code was sent to{" "}
-          <span className="text-white">{email}</span>
+          A 4-digit code was sent to <span className="text-white">{email}</span>
         </div>
         <EmailCode verifyCode={verifyCode} setCode={setCode} />
         <div className="flex justify-start items-center mt-[20px]">
@@ -117,9 +112,9 @@ const CodeVerifyComp = (props: iCodeVerifyComp) => {
           )}
         </div>
       </div>
-      <div className="mt-[116px] flex flex-col justify-between items-center w-full">
+      <div className="mt-[50px] flex flex-col justify-between items-center w-full">
         <TButton
-          className="font-[PopinsMedium]"
+          className="font-[SFMedium]"
           onClick={continueFun}
           disabled={!isValid()}
           type="purple"

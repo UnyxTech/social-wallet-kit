@@ -36,6 +36,7 @@ const TButton = ({
             type === "purple",
           "bg-error text-white rounded-[26px] hover:!bg-[#AD143C] hover:!opacity-100":
             type === "red",
+          "bg-[#3898FF] text-white rounded-[14px]": type === "blue",
           "bg-white text-purple border-purple border-[1px] border-solid rounded-[26px] hover:!bg-bgPurple hover:!opacity-100":
             type === "purpleOutline",
           "hover:opacity-70 transition-opacity duration-200 ease-in-out":

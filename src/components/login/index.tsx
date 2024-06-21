@@ -5,16 +5,13 @@ import { TButton } from "@/components/tButton";
 import { useTomoSDK } from "@/hooks";
 
 interface iLoginComp {
-  setStep: (step: number) => void
-  setLoginEmail: (email: string) => void
+  setStep: (step: number) => void;
+  setLoginEmail: (email: string) => void;
 }
 const LoginComp = (props: iLoginComp) => {
-  const {
-    setStep,
-    setLoginEmail
-  } = props;
+  const { setStep, setLoginEmail } = props;
   const [email, setEmail] = useState<string>("");
-  const tomoSDK = useTomoSDK()
+  const tomoSDK = useTomoSDK();
 
   const login = async () => {
     const ret = await tomoSDK.login('google')
@@ -32,10 +29,10 @@ const LoginComp = (props: iLoginComp) => {
   };
 
   const continueFun = async () => {
-    const result = await tomoSDK.sendCode(email)
+    const result = await tomoSDK.sendCode(email);
     if (result) {
-      setStep(2)
-      setLoginEmail(email)
+      setStep(2);
+      setLoginEmail(email);
     }
   };
 
@@ -46,7 +43,7 @@ const LoginComp = (props: iLoginComp) => {
   };
 
   return (
-    <div className="w-[372px] rounded-[12px] bg-[#151923] p-[32px] z-[10]">
+    <div className="w-[372px] rounded-[12px] p-[32px] z-[10]">
       <div className="flex justify-center items-center gap-[8px]">
         <Image
           width={32}
@@ -72,15 +69,13 @@ const LoginComp = (props: iLoginComp) => {
               src="/images/icon_google.svg"
               alt=""
             />
-            <span className="ml-[8px] font-[PopinsMedium] text-[16px]">
+            <span className="ml-[8px] font-[SFMedium] text-[16px]">
               Continue with Google
             </span>
           </TButton>
         </div>
       </div>
-      <div className="text-[white] opacity-80 text-center mt-[20px]">
-        Or
-      </div>
+      <div className="text-[white] opacity-80 text-center mt-[20px]">Or</div>
       <div className="mt-[24px] flex flex-col justify-between items-center w-full">
         <div className="flex flex-col justify-center items-center w-full gap-[20px]">
           <TInput
@@ -93,7 +88,7 @@ const LoginComp = (props: iLoginComp) => {
             onKeyUp={(e) => handleOnKeyUp(e)}
           />
           <TButton
-            className="font-[PopinsMedium]"
+            className="font-[SFMedium]"
             onClick={continueFun}
             disabled={!isValid()}
             type="purple"

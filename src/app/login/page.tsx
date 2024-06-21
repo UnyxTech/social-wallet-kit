@@ -1,28 +1,24 @@
 "use client";
 import { useState } from "react";
-import LoginComp from "@/components/login";
-import CodeVerifyComp from "@/components/login/codeVerify";
-import SuccessComp from "@/components/login/success";
-
+import { TButton } from "@/components/tButton";
+import { SignInDialog } from "@/components/dialog/signIn";
 interface IProps {}
 
 const Login: React.FC<IProps> = () => {
-  const [email, setEmail] = useState<string>("");
-  const [step, setStep] = useState<number>(1);
+  const [openSignIn, setOpenSignIn] = useState<boolean>(false);
 
   return (
-    <div className="bg-white flex h-full">
-      <div className="flex-1 h-full flex flex-col justify-center items-center">
-        {step === 1 && (
-          <LoginComp setStep={setStep} setLoginEmail={setEmail}/>
-        )}
-        {step === 2 && (
-          <CodeVerifyComp email={email} step={step} setStep={setStep}/>
-        )}
-        {step === 3 && (
-          <SuccessComp />
-        )}
+    <div className="bg-black h-full flex flex-col items-center">
+      <div className="p-[24px] w-full flex justify-end">
+        <TButton
+          className="px-[16px] w-fit"
+          type="blue"
+          onClick={() => setOpenSignIn(true)}
+        >
+          Connect Wallet
+        </TButton>
       </div>
+      <SignInDialog open={openSignIn} onClose={() => setOpenSignIn(false)} />
     </div>
   );
 };

@@ -1,21 +1,14 @@
 @font-face {
-  font-family: "Inter";
-  src: url("../fonts/Inter-Regular.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "SFRegular";
+  src: url("../fonts/SF-Pro-Rounded-Regular.otf") format("truetype");
 }
 
 @font-face {
-  font-family: "Popins";
-  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+  font-family: "SFMedium";
+  src: url("../fonts/SF-Pro-Rounded-Medium.otf") format("truetype");
 }
 
 @font-face {
-  font-family: "PopinsSemiBold";
-  src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "PopinsMedium";
-  src: url("../fonts/Poppins-Medium.ttf") format("truetype");
+  font-family: "SFBold";
+  src: url("../fonts/SF-Pro-Rounded-Bold.otf") format("truetype");
 }
