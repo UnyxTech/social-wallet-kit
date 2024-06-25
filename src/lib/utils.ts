@@ -1,3 +1,5 @@
+import { OKXMainWallet } from "@/providers/btc/okx_mainnet_wallet";
+import { UnisatWallet } from "@/providers/btc/unisat_wallet";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -16,6 +18,8 @@ export interface WalletItem {
   existName?: string;
   icon: string;
   walletType?: WalletType;
+  connectType?: 'btc';
+  connectProvider?: any;
 }
 
 export const walletList: WalletItem[] = [
@@ -59,16 +63,35 @@ export const walletList: WalletItem[] = [
     existName: "Coinbase Wallet",
     walletType: "coinbase",
   },
+  {
+    id: 7,
+    icon: "/images/okx_wallet.svg",
+    name: "OKX Bitcoin",
+    existName: "OKX Wallet",
+    walletType: "okx",
+    connectType: 'btc',
+    connectProvider: new OKXMainWallet(),
+  },
+  {
+    id: 8,
+    icon: "/images/unisat_wallet.svg",
+    name: "Unisat Wallet",
+    existName: "Unisat Wallet",
+    walletType: "unisat",
+    connectType: 'btc',
+    connectProvider: new UnisatWallet(),
+  },
 ];
-export type WalletType = "metamask" | "trust" | "okx" | "coinbase" | "tomo";
+export type WalletType = "metamask" | "trust" | "okx" | "coinbase" | "tomo" | "unisat";
 export const type2InjectorMap = {
   metamask: "ethereum",
   trust: "trustwallet",
   okx: "okxwallet",
   coinbase: "coinbaseWalletExtension",
   tomo: "tomo_evm",
+  unisat: 'unisat',
 };
-export const connectToWallet = async (walletType: WalletType) => {
+export const connectToWalletOld = async (walletType: WalletType) => {
   if (!type2InjectorMap[walletType]) {
     throw new Error("Wallet not install");
   }
@@ -76,4 +99,44 @@ export const connectToWallet = async (walletType: WalletType) => {
     method: "eth_requestAccounts",
   });
   return accounts[0];
+};
+
+export const connectToBtc = async (wallet: WalletItem) => {
+  return wallet.connectProvider.connectWallet();
+}
+
+export const connectToWallet = async (wallet: WalletItem, installed: any[], toast: any) => {
+  if (wallet.walletType === 'unisat' && !window.unisat) {
+    toast({
+      title: "Wallet not install.",
+      duration: 3000,
+    });
+    return;
+  } else if (
+    wallet.walletType !== 'unisat' && !installed.find(
+      (item: string) => item === wallet.existName
+    ) || (wallet.walletType === 'unisat' && !window.unisat)
+  ) {
+    toast({
+      title: "Wallet not install.",
+      duration: 3000,
+    });
+    return;
+  }
+
+  if (!wallet.walletType) {
+    return
+  }
+
+  let accounts
+  if (!wallet.connectType) {
+    accounts = await (window as any)[type2InjectorMap[wallet.walletType]].request({
+      method: "eth_requestAccounts",
+    });
+  } else if (wallet.connectType === 'btc') {
+    const address = await wallet.connectProvider.connectWallet();
+    accounts = [address]
+  }
+
+  return accounts[0]
 };

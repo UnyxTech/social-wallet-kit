@@ -67,22 +67,12 @@ export function SignInDialog({
               SIGN IN
             </div>
             {walletList.map((wallet: WalletItem, index) => (
-              <div
+              <div key={`wallet_${index}`}
                 onClick={async () => {
                   try {
-                    if (
-                      !installWallets.find(
-                        (item: string) => item === wallet.existName
-                      )
-                    ) {
-                      toast({
-                        title: "Wallet not install.",
-                        duration: 3000,
-                      });
-                      return;
-                    }
-                    if (index !== 0 && wallet.walletType) {
-                      const address = await connectToWallet(wallet.walletType);
+                    const address = await connectToWallet(wallet, installWallets, toast);
+                    
+                    if (address) {
                       onClose();
                       setAddress(address);
                     }
