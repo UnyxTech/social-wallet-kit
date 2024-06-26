@@ -18,8 +18,9 @@ export interface WalletItem {
   existName?: string;
   icon: string;
   walletType?: WalletType;
-  connectType?: 'btc';
+  connectType?: 'btc'|'all'|'social';
   connectProvider?: any;
+  rdns?: string;
 }
 
 export const walletList: WalletItem[] = [
@@ -27,6 +28,7 @@ export const walletList: WalletItem[] = [
     id: 1,
     icon: "/images/tomo_social.svg",
     name: "Tomo Social",
+    connectType: 'social'
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ export const walletList: WalletItem[] = [
     name: "Tomo Wallet",
     existName: "Tomo",
     walletType: "tomo",
+    rdns: "inc.tomo",
   },
   {
     id: 3,
@@ -41,6 +44,7 @@ export const walletList: WalletItem[] = [
     name: "MetaMask",
     existName: "MetaMask",
     walletType: "metamask",
+    rdns: "io.metamask"
   },
   {
     id: 4,
@@ -48,6 +52,7 @@ export const walletList: WalletItem[] = [
     name: "OKX Wallet",
     existName: "OKX Wallet",
     walletType: "okx",
+    rdns: "com.okex.wallet"
   },
   {
     id: 5,
@@ -55,6 +60,7 @@ export const walletList: WalletItem[] = [
     name: "Trust Wallet",
     existName: "Trust Wallet",
     walletType: "trust",
+    rdns: "com.trustwallet.app"
   },
   {
     id: 6,
@@ -62,6 +68,7 @@ export const walletList: WalletItem[] = [
     name: "Coinbase",
     existName: "Coinbase Wallet",
     walletType: "coinbase",
+    rdns: "com.coinbase.wallet"
   },
   {
     id: 7,
@@ -81,6 +88,14 @@ export const walletList: WalletItem[] = [
     connectType: 'btc',
     connectProvider: new UnisatWallet(),
   },
+  {
+    id: 1000,
+    icon: "/images/all_wallet.svg",
+    name: "All Wallets",
+    existName: "All Wallets",
+    connectType: "all",
+    connectProvider: new UnisatWallet(),
+  }
 ];
 export type WalletType = "metamask" | "trust" | "okx" | "coinbase" | "tomo" | "unisat";
 export const type2InjectorMap = {
@@ -106,16 +121,21 @@ export const connectToBtc = async (wallet: WalletItem) => {
 }
 
 export const connectToWallet = async (wallet: WalletItem, installed: any[], toast: any) => {
-  if (wallet.walletType === 'unisat' && !window.unisat) {
-    toast({
-      title: "Wallet not install.",
-      duration: 3000,
-    });
+  if (wallet.connectType === 'all') {
     return;
+  }
+  if (wallet.walletType === 'unisat') {
+    if (!window.unisat) {
+      toast({
+        title: "Wallet not install.",
+        duration: 3000,
+      });
+      return;
+    }
   } else if (
-    wallet.walletType !== 'unisat' && !installed.find(
-      (item: string) => item === wallet.existName
-    ) || (wallet.walletType === 'unisat' && !window.unisat)
+    !installed.find(
+      (item: any) => item.info.rdns === wallet.rdns
+    )
   ) {
     toast({
       title: "Wallet not install.",
@@ -139,4 +159,19 @@ export const connectToWallet = async (wallet: WalletItem, installed: any[], toas
   }
 
   return accounts[0]
+};
+
+export const connectToEvmWallet = async (wallet: any, installed: any[], toast: any) => {
+  const walletInstalled = installed.find((item: any) => item.info.rdns === wallet.rdns)
+  if (!walletInstalled) {
+    toast({
+      title: "Wallet not install.",
+      duration: 3000,
+    });
+    return;
+  }
+  const accounts = await walletInstalled.provider.request({
+    method: "eth_requestAccounts",
+  });
+  return accounts[0];
 };

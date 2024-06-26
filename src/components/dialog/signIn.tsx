@@ -6,6 +6,7 @@ import { WalletItem, cn, connectToWallet, walletList } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/user";
 import { useToast } from "@/components/ui/use-toast";
+import AllWalletsComp from "../all";
 interface iSignInDialog {
   className?: string;
   open: boolean;
@@ -22,13 +23,14 @@ export function SignInDialog({
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>("");
   const [installWallets, setInstallWallets] = useState<any>();
+  const [rightComp, setRightComp] = useState<string>('social');
 
   const getInstalledWallet = () => {
     const windowObj: any = window;
     if (windowObj.ethereum) {
       let wallets: any = [];
       const getInstalledWallets = (event: any) => {
-        const arr = [event.detail.info.name];
+        const arr = [event.detail];
         wallets = wallets.concat(arr);
         if (!!wallets) {
           setInstallWallets(wallets);
@@ -69,7 +71,12 @@ export function SignInDialog({
             {walletList.map((wallet: WalletItem, index) => (
               <div key={`wallet_${index}`}
                 onClick={async () => {
-                  if (index === 0) {
+                  if (wallet.connectType === 'social') {
+                    setRightComp('social');
+                    return
+                  }
+                  if (wallet.connectType === 'all') {
+                    setRightComp('all');
                     return
                   }
                   try {
@@ -88,7 +95,7 @@ export function SignInDialog({
                 }}
                 className={cn(
                   "flex items-center gap-3 px-[6px] py-[10px] cursor-pointer rounded-[12px] border-[1px] border-solid border-transparent hover:border-[rgba(255,255,255,0.04)] hover:bg-[rgba(122,112,255,0.20)]",
-                  index === 0 &&
+                  wallet.connectType === rightComp &&
                     "border-[1px] border-solid border-[rgba(255,255,255,0.04)] bg-[rgba(122,112,255,0.20)]"
                 )}
               >
@@ -97,21 +104,28 @@ export function SignInDialog({
               </div>
             ))}
           </div>
-          <div className="flex flex-col justify-center position">
-            <img
-              onClick={onClose}
-              className="absolute z-[10000] top-[16px] right-[16px] w-[28px] h-[28px] cursor-pointer"
-              src="/images/icon_close.svg"
-              alt=""
-            />
-            {step === 1 && (
-              <LoginComp setStep={setStep} setLoginEmail={setEmail} onClose={onClose}/>
-            )}
-            {step === 2 && (
-              <CodeVerifyComp email={email} step={step} setStep={setStep} onClose={onClose} />
-            )}
-            {step === 3 && <SuccessComp />}
-          </div>
+          {
+            rightComp === 'social' &&
+            <div className="flex flex-col justify-center position">
+              <img
+                onClick={onClose}
+                className="absolute z-[10000] top-[16px] right-[16px] w-[28px] h-[28px] cursor-pointer"
+                src="/images/icon_close.svg"
+                alt=""
+              />
+              {step === 1 && (
+                <LoginComp setStep={setStep} setLoginEmail={setEmail} onClose={onClose}/>
+              )}
+              {step === 2 && (
+                <CodeVerifyComp email={email} step={step} setStep={setStep} onClose={onClose} />
+              )}
+              {step === 3 && <SuccessComp />}
+            </div>
+          }
+          {
+            rightComp === 'all' &&
+            <AllWalletsComp installed={installWallets}/>
+          }
         </div>
       </DialogContent>
     </Dialog>
