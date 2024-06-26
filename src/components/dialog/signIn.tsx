@@ -69,6 +69,9 @@ export function SignInDialog({
             {walletList.map((wallet: WalletItem, index) => (
               <div key={`wallet_${index}`}
                 onClick={async () => {
+                  if (index === 0) {
+                    return
+                  }
                   try {
                     const address = await connectToWallet(wallet, installWallets, toast);
                     
