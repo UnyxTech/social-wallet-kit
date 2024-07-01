@@ -97,6 +97,7 @@ export const walletList: WalletItem[] = [
     connectProvider: new UnisatWallet(),
   }
 ];
+
 export type WalletType = "metamask" | "trust" | "okx" | "coinbase" | "tomo" | "unisat";
 export const type2InjectorMap = {
   metamask: "ethereum",
