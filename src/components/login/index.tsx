@@ -4,6 +4,7 @@ import { useUserStore } from "@/store/user";
 import { TInput } from "@/components/input/tInput";
 import { TButton } from "@/components/tButton";
 import { useTomoSDK } from "@/hooks";
+import { toast } from "../ui/use-toast";
 
 interface iLoginComp {
   setStep: (step: number) => void;
@@ -22,6 +23,20 @@ const LoginComp = (props: iLoginComp) => {
       const address = await tomoSDK.getEthAddress()
       setAddress(address)
       props.onClose()
+    }
+  };
+
+  const loginX = async () => {
+    const ret = await tomoSDK.login('twitter')
+    if (ret) {
+      const address = await tomoSDK.getEthAddress()
+      setAddress(address)
+      props.onClose()
+    } else {
+      toast({
+        title: "Failed to login X.",
+        duration: 3000,
+      });
     }
   };
 
@@ -67,7 +82,26 @@ const LoginComp = (props: iLoginComp) => {
       </div>
       <div className="flex items-center mt-[48px]">
         <div className="flex-1 flex justify-center items-center">
-          <TButton type="outline" onClick={login}>
+          <Image
+            width={24}
+            height={24}
+            src="/images/icon_google.svg"
+            alt=""
+            onClick={login}
+            className="w-[48px] h-[48px] p-[12px] rounded-[24px] border-[1px] border-solid border-[rgba(255,255,255,0.2)] cursor-pointer"
+          />
+          <div className="w-[48px] h-[48px] p-[12px] ml-[24px] rounded-[24px] border-[1px] border-solid border-[rgba(255,255,255,0.2)] cursor-pointer">
+            <Image
+              width={24}
+              height={24}
+              src="/images/icon_x.svg"
+              alt=""
+              onClick={loginX}
+              className="w-[24px] h-[24px]"
+            />
+          </div>
+          
+          {/* <TButton type="outline" onClick={login}>
             <Image
               width={24}
               height={24}
@@ -77,7 +111,7 @@ const LoginComp = (props: iLoginComp) => {
             <span className="ml-[8px] font-[SFMedium] text-[16px]">
               Continue with Google
             </span>
-          </TButton>
+          </TButton> */}
         </div>
       </div>
       <div className="text-[white] opacity-80 text-center mt-[20px]">Or</div>
