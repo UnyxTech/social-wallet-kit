@@ -22,6 +22,7 @@ const LoginComp = (props: iLoginComp) => {
     if (ret) {
       const address = await tomoSDK.getEthAddress()
       setAddress(address)
+      console.log('address:', address)
       props.onClose()
     }
   };
