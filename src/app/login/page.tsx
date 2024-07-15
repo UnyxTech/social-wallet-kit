@@ -6,6 +6,7 @@ import { SignInDialog } from "@/components/dialog/signIn";
 import { useUserStore } from "@/store/user";
 import { shortAddress } from "@/lib/utils";
 import { getAddresses, sendTx, signMessage, switchChain } from "@/lib/eth-actions"
+import { sendBitcoin, signBtcMessage, signPsbt } from "@/lib/btc-actions"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useTomoSDK } from "@/hooks";
 interface IProps {}
@@ -57,47 +58,79 @@ const Login: React.FC<IProps> = () => {
       </div>
       {
         address &&
-        <div className="p-[24px] w-full flex justify-start">
-          <TButton
-            className="px-[16px] w-fit"
-            type="blue"
-            onClick={() => {
-              const web3 = new Web3(tomoSDK.ethereumProvider)
-              signMessage(web3, 'hello', address)
-            }}
-          >
-            evm personla sign
-          </TButton>
-          <TButton
-            className="px-[16px] w-fit ml-[8px]"
-            type="blue"
-            onClick={() => {
-              const web3 = new Web3(tomoSDK.ethereumProvider)
-              sendTx(web3, address, address, '0.01')
-            }}
-          >
-            evm send tx with viem
-          </TButton>
-          <TButton
-            className="px-[16px] w-fit ml-[8px]"
-            type="blue"
-            onClick={async () => {
-              getAddresses(tomoSDK.ethereumProvider)
-            }}
-          >
-            evm get address
-          </TButton>
+        <div>
+          <div className="p-[24px] w-full flex justify-start">
+            <TButton
+              className="px-[16px] w-fit"
+              type="blue"
+              onClick={() => {
+                const web3 = new Web3(tomoSDK.ethereumProvider)
+                signMessage(web3, 'hello', address)
+              }}
+            >
+              evm personla sign
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={() => {
+                const web3 = new Web3(tomoSDK.ethereumProvider)
+                sendTx(web3, address, address, '0.01')
+              }}
+            >
+              evm send tx with viem
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                getAddresses(tomoSDK.ethereumProvider)
+              }}
+            >
+              evm get address
+            </TButton>
 
-          <TButton
-            className="px-[16px] w-fit ml-[8px]"
-            type="blue"
-            onClick={async () => {
-              switchChain(tomoSDK.ethereumProvider)
-            }}
-          >
-            evm switch chain
-          </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                switchChain(tomoSDK.ethereumProvider)
+              }}
+            >
+              evm switch chain
+            </TButton>
+          </div>
+          <div className="p-[24px] w-full flex justify-start mt-2">
+            <TButton
+              className="px-[16px] w-fit"
+              type="blue"
+              onClick={() => {
+                signBtcMessage(tomoSDK.bitcoinProvider, 'hello')
+              }}
+            >
+              sign btc message
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={() => {
+                sendBitcoin(tomoSDK.bitcoinProvider, 'tb1pezwd2ke3kk5qhqtkg2kt3vtfr0nhzdeqdhhelp3qswtkuas68pgqw79745', 0.0001)
+              }}
+            >
+              send bitcoin
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                signPsbt(tomoSDK.bitcoinProvider, '70779897')
+              }}
+            >
+              signPsbt
+            </TButton>
+          </div>
         </div>
+        
       }
       
       <SignInDialog open={openSignIn} onClose={() => setOpenSignIn(false)} />
