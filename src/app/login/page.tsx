@@ -5,7 +5,7 @@ import { TButton } from "@/components/tButton";
 import { SignInDialog } from "@/components/dialog/signIn";
 import { useUserStore } from "@/store/user";
 import { shortAddress } from "@/lib/utils";
-import { signMessage } from "@/lib/eth-actions"
+import { getAddresses, sendTx, signMessage, switchChain } from "@/lib/eth-actions"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useTomoSDK } from "@/hooks";
 interface IProps {}
@@ -67,6 +67,35 @@ const Login: React.FC<IProps> = () => {
             }}
           >
             evm personla sign
+          </TButton>
+          <TButton
+            className="px-[16px] w-fit ml-[8px]"
+            type="blue"
+            onClick={() => {
+              const web3 = new Web3(tomoSDK.ethereumProvider)
+              sendTx(web3, address, address, '0.01')
+            }}
+          >
+            evm send tx with viem
+          </TButton>
+          <TButton
+            className="px-[16px] w-fit ml-[8px]"
+            type="blue"
+            onClick={async () => {
+              getAddresses(tomoSDK.ethereumProvider)
+            }}
+          >
+            evm get address
+          </TButton>
+
+          <TButton
+            className="px-[16px] w-fit ml-[8px]"
+            type="blue"
+            onClick={async () => {
+              switchChain(tomoSDK.ethereumProvider)
+            }}
+          >
+            evm switch chain
           </TButton>
         </div>
       }
