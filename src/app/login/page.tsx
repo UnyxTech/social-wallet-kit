@@ -6,7 +6,7 @@ import { SignInDialog } from "@/components/dialog/signIn";
 import { useUserStore } from "@/store/user";
 import { shortAddress } from "@/lib/utils";
 import { getAddresses, sendTx, signMessage, switchChain } from "@/lib/eth-actions"
-import { sendBitcoin, signBtcMessage, signPsbt } from "@/lib/btc-actions"
+import { getBtcInfos, sendBitcoin, signBtcMessage, signPsbt } from "@/lib/btc-actions"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useTomoSDK } from "@/hooks";
 interface IProps {}
@@ -127,6 +127,15 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               signPsbt
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                getBtcInfos(tomoSDK.bitcoinProvider)
+              }}
+            >
+              get btc infos
             </TButton>
           </div>
         </div>

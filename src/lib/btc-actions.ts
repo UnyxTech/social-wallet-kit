@@ -13,3 +13,18 @@ export const signPsbt = async (provider: any, psbtHex: string) => {
   const sig = await provider.signPsbt(psbtHex)
   console.log('sig:', sig)
 }
+
+export const getBtcInfos = async (provider: any) => {
+  const network = await provider.getNetwork()
+  console.log('network:', network)
+  const address = await provider.getAddress()
+  console.log('address:', address)
+  const balance = await provider.getBalance()
+  console.log('balance:', balance)
+  await provider.switchNetwork('signet')
+  const network1 = await provider.getNetwork()
+  console.log('network:', network1)
+  provider.changeAddressType('P2SH')
+  const address1 = await provider.getAddress()
+  console.log('address:', address1)
+}
