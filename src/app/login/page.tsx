@@ -5,6 +5,7 @@ import { TButton } from "@/components/tButton";
 import { SignInDialog } from "@/components/dialog/signIn";
 import { useUserStore } from "@/store/user";
 import { shortAddress } from "@/lib/utils";
+import { Transaction, VersionedTransaction, SystemProgram, PublicKey, TransactionMessage } from "@solana/web3.js";
 import {
   getAddresses,
   sendTx,
@@ -27,6 +28,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { sendSol, signAndSendSolTx, signSolMessage, signSolTx, signSolTxs } from "@/lib/sol-actions"
 import { useTomoSDK } from "@/hooks";
 interface IProps {}
 
@@ -178,6 +180,82 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               get btc infos
+            </TButton>
+          </div>
+          <div className="p-[24px] w-full flex justify-start mt-2">
+            <TButton
+              className="px-[16px] w-fit"
+              type="blue"
+              onClick={() => {
+                sendSol(tomoSDK.solanaProvider, 'CGSDTe5TnW7CexJQorJRLQosqbv1PGGHizKD9xcFypAN', '1000')
+              }}
+            >
+              send sol tx
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                const tx = new Transaction()
+
+                // const address = await tomoSDK.solanaProvider.getPublicKey()
+                // const publicKey = new PublicKey(address)
+                // const instructions = [
+                //   SystemProgram.transfer({
+                //     fromPubkey: publicKey,
+                //     toPubkey: publicKey,
+                //     lamports: 10,
+                //   }),
+                // ];
+                // await tomoSDK.solanaProvider.connect()
+                // const blockhash = (await tomoSDK.solanaProvider.connection.getRecentBlockhash('max')).blockhash;
+                // // create v0 compatible message
+                // const messageV0 = new TransactionMessage({
+                //   payerKey: publicKey,
+                //   recentBlockhash: blockhash,
+                //   instructions,
+                // }).compileToV0Message();
+                
+                // // make a versioned transaction
+                // const transactionV0 = new VersionedTransaction(messageV0);
+
+                signSolTx(tomoSDK.solanaProvider, tx)
+              }}
+            >
+              sign sol tx
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                const tx = new Transaction()
+
+                signSolTxs(tomoSDK.solanaProvider, [tx, tx])
+              }}
+            >
+              sign sol txs
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                const tx = new Transaction()
+
+                signAndSendSolTx(tomoSDK.solanaProvider, tx)
+              }}
+            >
+              sign and send sol tx
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                const encodedMessage = new TextEncoder().encode('hello');
+
+                signSolMessage(tomoSDK.solanaProvider, encodedMessage)
+              }}
+            >
+              sign message
             </TButton>
           </div>
         </div>

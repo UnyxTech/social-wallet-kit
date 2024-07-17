@@ -21,6 +21,8 @@ export const getBtcInfos = async (provider: any) => {
   console.log('address:', address)
   const balance = await provider.getBalance()
   console.log('balance:', balance)
+  const pubkey = await provider.getPublicKeyHex()
+  console.log('pbukey:', pubkey)
   await provider.switchNetwork('signet')
   const network1 = await provider.getNetwork()
   console.log('network:', network1)
