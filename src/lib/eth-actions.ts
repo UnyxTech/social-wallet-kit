@@ -81,16 +81,6 @@ export const sendTx = async (
   console.log("resp:", resp);
 };
 
-const getRawTx = ({ nonce, gasPrice, gasLimit, to, chainId, amount }: any) => {
-  return {
-    nonce: "0x" + nonce.toString(16),
-    gasPrice: "0x" + parseInt(gasPrice.toString()).toString(16),
-    gasLimit: "0x" + parseInt(gasLimit.toString()).toString(16),
-    to,
-    chainId: parseInt(chainId),
-    value: "0x" + amount.toString(16),
-  };
-};
 export const sendErc20 = async (web3: any) => {
   const from = "0xB86aA614EDc512f4e3147779f964d420b43E44b4";
   const to = "0xB86aA614EDc512f4e3147779f964d420b43E44b4";
@@ -99,7 +89,7 @@ export const sendErc20 = async (web3: any) => {
 
   try {
     const contract = new web3.eth.Contract(abi, contractAddress);
-    const value = web3.utils.toWei(amount, "ether");
+    const value = web3.utils.toWei(amount, 6);
     const resp = await contract.methods.transfer(to, value).send({
       from: from,
     });
