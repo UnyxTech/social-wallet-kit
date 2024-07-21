@@ -15,6 +15,8 @@ export const signPsbt = async (provider: any, psbtHex: string) => {
 }
 
 export const getBtcInfos = async (provider: any) => {
+  const allAddresses = await provider.getAllAddresses()
+  console.log('all:', allAddresses)
   const network = await provider.getNetwork()
   console.log('network:', network)
   const address = await provider.getAddress()

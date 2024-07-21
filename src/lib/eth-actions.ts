@@ -8,6 +8,8 @@ export const signMessage = async (
 ) => {
   const sig = await web3.eth.personal.sign(message, account, "");
   console.log("sig:", sig);
+  const address = await web3.eth.personal.ecRecover(message, sig);
+  console.log('recover address', address)
 };
 
 export const signTypeData = async (web3: any, account: string) => {
@@ -100,6 +102,9 @@ export const sendErc20 = async (web3: any) => {
 };
 
 export const switchChain = async (provider: any) => {
+  provider.on('networkChanged', (chainId: any) => {
+    console.log('event chainId:', chainId)
+  })
   const client = createWalletClient({
     transport: custom(provider),
   });

@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { sendSol, signAndSendSolTx, signSolMessage, signSolTx, signSolTxs } from "@/lib/sol-actions"
 import { useTomoSDK } from "@/hooks";
+import { getCommonInfos } from "@/lib/common-actions"
 interface IProps {}
 
 const Login: React.FC<IProps> = () => {
@@ -39,6 +40,7 @@ const Login: React.FC<IProps> = () => {
   const [openSignIn, setOpenSignIn] = useState<boolean>(false);
   const logout = () => {
     setAddress(undefined);
+    tomoSDK.logout()
   };
 
   return (
@@ -85,7 +87,7 @@ const Login: React.FC<IProps> = () => {
               type="blue"
               onClick={() => {
                 const web3 = new Web3(tomoSDK.ethereumProvider);
-                signMessage(web3, "hello", address);
+                signMessage(web3, web3.utils.sha3("hello")||'', address);
               }}
             >
               evm personla sign
@@ -256,6 +258,26 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               sign message
+            </TButton>
+          </div>
+          <div className="p-[24px] w-full flex justify-start mt-2">
+            <TButton
+              className="px-[16px] w-fit"
+              type="blue"
+              onClick={() => {
+                getCommonInfos(tomoSDK)
+              }}
+            >
+              common infos
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                tomoSDK.createPasskey()
+              }}
+            >
+              create passkey
             </TButton>
           </div>
         </div>
