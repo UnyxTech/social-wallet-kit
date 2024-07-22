@@ -75,8 +75,10 @@ export const sendTx = async (
   to: string,
   value: string
 ) => {
+  const chainId = await web3.eth.getChainId();
+  console.log('chainId: ', Number(chainId))
   const resp = await web3.eth.sendTransaction({
-    from: "0xB86aA614EDc512f4e3147779f964d420b43E44b4",
+    from: '0xB86aA614EDc512f4e3147779f964d420b43E44b4',
     to: "0xB86aA614EDc512f4e3147779f964d420b43E44b4",
     value: web3.utils.toWei(value, "ether"),
   });

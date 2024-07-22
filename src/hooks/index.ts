@@ -27,6 +27,7 @@ export const useTomoSDK = () => {
       }))
 
       TomoSDK.setDevApi(clientId)
+      TomoSDK.setLogLevel('debug')
     }
     init()
   }, [])

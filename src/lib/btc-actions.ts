@@ -31,4 +31,6 @@ export const getBtcInfos = async (provider: any) => {
   provider.changeAddressType('P2SH')
   const address1 = await provider.getAddress()
   console.log('address:', address1)
+  const feeRate = await provider.getFeeRate()
+  console.log('feeRate:', feeRate)
 }

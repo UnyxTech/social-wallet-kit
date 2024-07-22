@@ -106,8 +106,10 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={() => {
-                const web3 = new Web3(tomoSDK.ethereumProvider);
-                sendTx(web3, address, address, "0.00001");
+                tomoSDK.ethereumProvider.switchChain(11155111).then(() => {
+                  const web3 = new Web3(tomoSDK.ethereumProvider);
+                  sendTx(web3, address, address, "0.001");
+                })
               }}
             >
               evm send tx with viem

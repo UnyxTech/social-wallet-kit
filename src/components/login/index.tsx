@@ -18,12 +18,17 @@ const LoginComp = (props: iLoginComp) => {
   const tomoSDK = useTomoSDK();
 
   const login = async () => {
-    const ret = await tomoSDK.login('google')
-    if (ret) {
-      const address = await tomoSDK.getEthAddress()
-      setAddress(address)
-      console.log('address:', address)
-      props.onClose()
+    try {
+      const ret = await tomoSDK.login('google')
+      console.log('ret:', ret) 
+      if (ret) {
+        const address = await tomoSDK.getEthAddress()
+        setAddress(address)
+        console.log('address:', address)
+        props.onClose()
+      }
+    } catch(e) {
+      console.log('error:',e)
     }
   };
 
