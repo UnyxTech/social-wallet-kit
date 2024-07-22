@@ -13,7 +13,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@solana/web3.js": "^1.95.0",
-    "@tomo-inc/social-wallet-sdk": "^1.0.5",
+    "@tomo-inc/social-wallet-sdk": "^1.0.7",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -24,7 +24,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
-    "viem": "^2.17.4",
+    "viem": "^2.17.9",
     "web3": "^4.11.0",
     "zustand": "^4.4.7"
   },

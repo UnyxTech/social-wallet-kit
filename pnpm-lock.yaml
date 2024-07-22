@@ -2784,7 +2784,8 @@ snapshots:
       buffer: 6.0.3
       crypto-js: 4.2.0
       js-sha256: 0.11.0
-      viem: 2.17.4(typescript@5.5.2)
+      loglevel: 1.9.1
+      viem: 2.17.9(typescript@5.5.2)
     transitivePeerDependencies:
       - bufferutil
       - debug
