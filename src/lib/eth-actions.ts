@@ -117,11 +117,14 @@ export const switchChain = async (provider: any) => {
   console.log("chainId after:", chainId);
 };
 
-export const getAddresses = async (provider: any) => {
+export const getAddresses = async (provider: any, sdk: any) => {
   const client = createWalletClient({
     transport: custom(provider),
   });
   const [address] = await client.requestAddresses();
   // const [address] = await client.getAddresses()
   console.log("address:", address);
+
+  const dt = sdk.getDefaultTokens()
+  console.log('dt:', dt)
 };

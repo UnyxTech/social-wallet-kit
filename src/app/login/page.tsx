@@ -141,7 +141,7 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                getAddresses(tomoSDK.ethereumProvider);
+                getAddresses(tomoSDK.ethereumProvider, tomoSDK);
               }}
             >
               evm get address
