@@ -18,6 +18,7 @@ export default function Demo() {
         'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
       }
       sdkMode={'dev'}
+      logLevel={'debug'}
     >
       <ChildComponent />
     </TomoContextProvider>
