@@ -5,7 +5,13 @@ import { TButton } from "@/components/tButton";
 import { SignInDialog } from "@/components/dialog/signIn";
 import { useUserStore } from "@/store/user";
 import { shortAddress } from "@/lib/utils";
-import { Transaction, VersionedTransaction, SystemProgram, PublicKey, TransactionMessage } from "@solana/web3.js";
+import {
+  Transaction,
+  VersionedTransaction,
+  SystemProgram,
+  PublicKey,
+  TransactionMessage,
+} from "@solana/web3.js";
 import {
   getAddresses,
   sendTx,
@@ -19,6 +25,7 @@ import {
   sendBitcoin,
   signBtcMessage,
   signPsbt,
+  btcChangeAddressType,
 } from "@/lib/btc-actions";
 import {
   NavigationMenu,
@@ -28,9 +35,15 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { sendSol, signAndSendSolTx, signSolMessage, signSolTx, signSolTxs } from "@/lib/sol-actions"
+import {
+  sendSol,
+  signAndSendSolTx,
+  signSolMessage,
+  signSolTx,
+  signSolTxs,
+} from "@/lib/sol-actions";
 import { useTomoSDK } from "@/hooks";
-import { getCommonInfos } from "@/lib/common-actions"
+import { getCommonInfos } from "@/lib/common-actions";
 interface IProps {}
 
 const Login: React.FC<IProps> = () => {
@@ -40,7 +53,7 @@ const Login: React.FC<IProps> = () => {
   const [openSignIn, setOpenSignIn] = useState<boolean>(false);
   const logout = () => {
     setAddress(undefined);
-    tomoSDK.logout()
+    tomoSDK.logout();
   };
 
   return (
@@ -87,7 +100,7 @@ const Login: React.FC<IProps> = () => {
               type="blue"
               onClick={() => {
                 const web3 = new Web3(tomoSDK.ethereumProvider);
-                signMessage(web3, web3.utils.sha3("hello")||'', address);
+                signMessage(web3, web3.utils.sha3("hello") || "", address);
               }}
             >
               evm personla sign
@@ -109,7 +122,7 @@ const Login: React.FC<IProps> = () => {
                 tomoSDK.ethereumProvider.switchChain(11155111).then(() => {
                   const web3 = new Web3(tomoSDK.ethereumProvider);
                   sendTx(web3, address, address, "0.001");
-                })
+                });
               }}
             >
               evm send tx with viem
@@ -161,7 +174,7 @@ const Login: React.FC<IProps> = () => {
                 sendBitcoin(
                   tomoSDK.bitcoinProvider,
                   "tb1pezwd2ke3kk5qhqtkg2kt3vtfr0nhzdeqdhhelp3qswtkuas68pgqw79745",
-                  0.0001
+                  0.00000546
                 );
               }}
             >
@@ -171,7 +184,10 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                signPsbt(tomoSDK.bitcoinProvider, "70779897");
+                signPsbt(
+                  tomoSDK.bitcoinProvider,
+                  "70736274ff0100a80200000001756eb457db5c1464ca5c941a1252152ee77255350bd7c5f744b79331047f62390100000000ffffffff030000000000000000166a1406f35f485caf3b2a9e939d8f5bf121074917c70e4c020000000000002251202f90f68770da926b6ece2bbdb0f61b30470266367b2a505a6ede3ee34bc71a649504000000000000225120bce8a9a9d4a53d66d8f55dc5b6a978c17a3596a49e314b228ba7d407595a4d21000000000001012b0808000000000000225120bce8a9a9d4a53d66d8f55dc5b6a978c17a3596a49e314b228ba7d407595a4d2101172018f08b751bcf23a4f1e2ac832a02dc350d07072122ad1f38ca6ff0d94d9d685600000000"
+                );
               }}
             >
               signPsbt
@@ -185,13 +201,26 @@ const Login: React.FC<IProps> = () => {
             >
               get btc infos
             </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                btcChangeAddressType(tomoSDK.bitcoinProvider, "P2TR");
+              }}
+            >
+              btc changeAddressType
+            </TButton>
           </div>
           <div className="p-[24px] w-full flex justify-start mt-2">
             <TButton
               className="px-[16px] w-fit"
               type="blue"
               onClick={() => {
-                sendSol(tomoSDK.solanaProvider, 'CGSDTe5TnW7CexJQorJRLQosqbv1PGGHizKD9xcFypAN', '1000')
+                sendSol(
+                  tomoSDK.solanaProvider,
+                  "CGSDTe5TnW7CexJQorJRLQosqbv1PGGHizKD9xcFypAN",
+                  "1000"
+                );
               }}
             >
               send sol tx
@@ -200,7 +229,7 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                const tx = new Transaction()
+                const tx = new Transaction();
 
                 // const address = await tomoSDK.solanaProvider.getPublicKey()
                 // const publicKey = new PublicKey(address)
@@ -219,11 +248,11 @@ const Login: React.FC<IProps> = () => {
                 //   recentBlockhash: blockhash,
                 //   instructions,
                 // }).compileToV0Message();
-                
+
                 // // make a versioned transaction
                 // const transactionV0 = new VersionedTransaction(messageV0);
 
-                signSolTx(tomoSDK.solanaProvider, tx)
+                signSolTx(tomoSDK.solanaProvider, tx);
               }}
             >
               sign sol tx
@@ -232,9 +261,9 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                const tx = new Transaction()
+                const tx = new Transaction();
 
-                signSolTxs(tomoSDK.solanaProvider, [tx, tx])
+                signSolTxs(tomoSDK.solanaProvider, [tx, tx]);
               }}
             >
               sign sol txs
@@ -243,9 +272,9 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                const tx = new Transaction()
+                const tx = new Transaction();
 
-                signAndSendSolTx(tomoSDK.solanaProvider, tx)
+                signAndSendSolTx(tomoSDK.solanaProvider, tx);
               }}
             >
               sign and send sol tx
@@ -254,9 +283,9 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                const encodedMessage = new TextEncoder().encode('hello');
+                const encodedMessage = new TextEncoder().encode("hello");
 
-                signSolMessage(tomoSDK.solanaProvider, encodedMessage)
+                signSolMessage(tomoSDK.solanaProvider, encodedMessage);
               }}
             >
               sign message
@@ -267,7 +296,7 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit"
               type="blue"
               onClick={() => {
-                getCommonInfos(tomoSDK)
+                getCommonInfos(tomoSDK);
               }}
             >
               common infos
@@ -276,7 +305,7 @@ const Login: React.FC<IProps> = () => {
               className="px-[16px] w-fit ml-[8px]"
               type="blue"
               onClick={async () => {
-                tomoSDK.createPasskey()
+                tomoSDK.createPasskey();
               }}
             >
               create passkey
