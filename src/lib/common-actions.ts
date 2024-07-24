@@ -5,6 +5,8 @@ export const getCommonInfos = async (sdk: any) => {
   console.log('email:', hasEmail)
   const passkeyStatus = await sdk.getPasskeyStatus()
   console.log('passkey status:', passkeyStatus)
+  const socialInfo = await sdk.getUserSocialInfo()
+  console.log('socialInfo:', socialInfo)
   // const checkEmail = await sdk.sendCode('social1@aaa.com')
   // console.log('checkEmail:', checkEmail)
 }

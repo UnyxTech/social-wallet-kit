@@ -13,7 +13,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@solana/web3.js": "^1.95.0",
-    "@tomo-inc/social-wallet-sdk": "^1.0.7",
+    "@tomo-inc/social-wallet-sdk": "link:/Users/deyangliu/clv-projects/wildfirechat/social-wallet-sdk",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

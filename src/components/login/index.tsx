@@ -25,6 +25,8 @@ const LoginComp = (props: iLoginComp) => {
         const address = await tomoSDK.getEthAddress()
         setAddress(address)
         console.log('address:', address)
+        const pkStatus = await tomoSDK.getPasskeyStatus()
+        console.log('pkStatus:', pkStatus)
         props.onClose()
       }
     } catch(e) {

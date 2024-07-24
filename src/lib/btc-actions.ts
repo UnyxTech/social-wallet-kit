@@ -45,3 +45,16 @@ export const btcChangeAddressType = async (provider: any, type: string) => {
   const newAddressType = await provider.getAddressType();
   console.log("btc newAddressType:", newAddressType);
 };
+
+export const getBtcSwitch = async (provider: any) => {
+  provider.on('networkChanged', (network: any) => {
+    console.log('network:', network)
+  })
+
+  provider.on('addressTypeChanged', (addressType: any) => {
+    console.log('addressTypeChanged:', addressType)
+  })
+  await provider.switchNetwork('signet')
+  provider.changeAddressType('P2SH')
+}
+

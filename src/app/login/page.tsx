@@ -22,6 +22,7 @@ import {
 } from "@/lib/eth-actions";
 import {
   getBtcInfos,
+  getBtcSwitch,
   sendBitcoin,
   signBtcMessage,
   signPsbt,
@@ -209,6 +210,15 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               btc changeAddressType
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                getBtcSwitch(tomoSDK.bitcoinProvider);
+              }}
+            >
+              get btc switch
             </TButton>
           </div>
           <div className="p-[24px] w-full flex justify-start mt-2">
