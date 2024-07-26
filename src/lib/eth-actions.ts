@@ -1,5 +1,6 @@
-import { createWalletClient, custom } from "viem";
-import abi from "human-standard-token-abi";
+import { createPublicClient, createWalletClient, custom, http } from "viem";
+import {abi} from "../constant/abi";
+import { mainnet } from "viem/chains";
 
 export const signMessage = async (
   web3: any,
@@ -98,6 +99,20 @@ export const sendErc20 = async (web3: any) => {
       from: from,
     });
     console.log("resp:", resp);
+
+    // const publicClient = createPublicClient({
+    //   chain: mainnet,
+    //   transport: http('https://mainnet.infura.io/v3/e42637ee1f664cad93e70bbf62196769'),
+    // });
+    // const gas: any = await publicClient.estimateGas({
+    //   data : "0xa9059cbb000000000000000000000000b86aa614edc512f4e3147779f964d420b43e44b40000000000000000000000000000000000000000000000000000000000002710",
+    //   account : "0xB86aA614EDc512f4e3147779f964d420b43E44b4",
+    //   // maxFeePerGas : BigInt("0x154e2340b2"),
+    //   // maxPriorityFeePerGas : BigInt("0x9502f900"),
+    //   to : "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    //   value: BigInt(0)
+    // });
+    // console.log('gas:', gas)
   } catch (e) {
     console.log(e);
   }
