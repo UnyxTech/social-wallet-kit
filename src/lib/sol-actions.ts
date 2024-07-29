@@ -1,8 +1,8 @@
 import { Transaction, VersionedTransaction } from "@solana/web3.js";
-export const sendSol = async (provider: any, to: string, amount: string) => {
+export const sendSol = async (provider: any, to: string, amount: string, contractAddress?: string) => {
   const pubkey = await provider.getPublicKey()
   console.log('pubkey:', pubkey)
-  const sig = await provider.sendSol(to, amount)
+  const sig = await provider.sendSol(to, amount, contractAddress)
 }
 
 
