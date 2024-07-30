@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "PORT=3002 next dev",
-    "build": "next build",
+    "build": "next build --experimental-build-mode compile",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-old": "next build"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-toast": "^1.2.1",
-    "@tomo-inc/tomo-social-react": "^0.1.11",
+    "@tomo-inc/tomo-social-react": "^0.1.16",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

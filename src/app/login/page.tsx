@@ -11,21 +11,31 @@ import '@tomo-inc/tomo-social-react/style.css'
 import {useState} from "react";
 
 export default function Demo() {
-  return (
-    <TomoContextProvider
-      evmDefaultChainId={1}
-      clientId={
-        'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
-      }
-      sdkMode={'dev'}
-      logLevel={'debug'}
-    >
-      <ChildComponent />
-    </TomoContextProvider>
-  )
+  // if (typeof window === undefined) {
+  //   return <div></div> 
+  // }
+  if (typeof window !== undefined) {
+    return (
+      <TomoContextProvider
+        evmDefaultChainId={1}
+        clientId={
+          'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
+        }
+        sdkMode={'dev'}
+        logLevel={'debug'}
+      >
+        <ChildComponent />
+        {/* <div>hello</div> */}
+      </TomoContextProvider>
+    )
+  } else {
+    return <div></div>
+  }
+
+  // return <div></div>
 }
 
-export function ChildComponent() {
+function ChildComponent() {
   const tomoModal = useTomoModalControl()
   const tomoWalletState = useTomoWalletState()
   const tomoClientMap = useTomoClientMap()
@@ -101,13 +111,13 @@ function LodingButton({
       {...otherProps}
       disabled={loading || disabled}
       onClick={() => {
-        loadingFn(onClick)
+        loadingFn(onClick as any)
       }}
     />
   )
 }
 
-function ShowJson({ title, obj, rows = 10 }) {
+function ShowJson({ title, obj, rows = 10 }: {title: any, obj: any, rows?: number}) {
   const jsonFn = function jsonValueFn(key, value) {
     if (key && this !== obj) {
       return 'any'
@@ -161,7 +171,7 @@ const loadState = {
   }
 }
 
-export function useLoading(
+function useLoading(
   initValue: boolean | number = false
 ): [boolean, <T>(promise: Promise<T> | Function | Boolean) => Promise<T>] {
   const [loading, setLoading] = useState<boolean | number>(initValue)
