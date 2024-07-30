@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.2.1
     version: 1.2.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
   '@tomo-inc/tomo-social-react':
-    specifier: ^0.1.16
-    version: 0.1.16(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
+    specifier: ^0.1.17
+    version: 0.1.17(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
   axios:
     specifier: ^1.6.2
     version: 1.7.2
@@ -836,8 +836,8 @@ packages:
       - zod
     dev: false
 
-  /@tomo-inc/tomo-social-react@0.1.16(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
-    resolution: {integrity: sha512-BFgA8Mdx7JUWbTeg+FdTBF88UUOlxCoO/eJcRRIXZoBrG7UN1N/Jzf3sSU4GIKvKU30E009hkiET7MAIGnjN9Q==}
+  /@tomo-inc/tomo-social-react@0.1.17(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
+    resolution: {integrity: sha512-1QrPSnwgfAB298LCEs66UG7yNJWvmhQh0OzUPEgznFxfD7vsKr0ukRxyNmUgJB6ZaJGurc90I57bN3JyRgJrTw==}
     peerDependencies:
       react: ^18
       react-dom: ^18
