@@ -17,8 +17,8 @@ export const useTomoSDK = () => {
       const ethProvider = new EthereumProvider(chainConfig)
       const solanaProvider = new SolanaProvider()
       await solanaProvider.connect()
-      // const clientId = 'KyUfUyildJzvRRweV0zA6mqKGm38afNcIjnCYjiSSZW5jkgtWPMJc5AG75yxyXDz9fq139gtfUiBRnsF4kEd7tiu'
       const clientId = 'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
+      // const clientId = 'yiPWTD4fztgEVS78HDUHoSFb4geppl2XTrhHZQUdGnh981bE13m2jrEwBhMlKNUNRWSoCYwD4ruOhWStuunYxMF0'
       setTomoSDK(TomoSDK.init({
         clientId,
         ethereumProvider: ethProvider,
