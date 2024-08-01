@@ -27,6 +27,7 @@ import {
   signBtcMessage,
   signPsbt,
   btcChangeAddressType,
+  getBtcInscription,
 } from "@/lib/btc-actions";
 import {
   NavigationMenu,
@@ -201,6 +202,15 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               get btc infos
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                getBtcInscription(tomoSDK.bitcoinProvider);
+              }}
+            >
+              get btc Inscription
             </TButton>
             <TButton
               className="px-[16px] w-fit ml-[8px]"

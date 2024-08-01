@@ -38,6 +38,13 @@ export const getBtcInfos = async (provider: any) => {
   console.log("feeRate:", feeRate);
 };
 
+export const getBtcInscription = async (provider: any) => {
+  const data1 = await provider.getInscriptionData('bc1pezwd2ke3kk5qhqtkg2kt3vtfr0nhzdeqdhhelp3qswtkuas68pgqekn30m')
+  console.log('getInscriptionData ==>', data1)
+  const data2 = await provider.getInscriptionInfo('4c56fa8fa68cdb6fe8d5e1348230b8cae47b406d0839c545af084e5460ee95cdi0')
+  console.log('getInscriptionInfo =>>', data2)
+}
+
 export const btcChangeAddressType = async (provider: any, type: string) => {
   const curAddressType = await provider.getAddressType();
   console.log("btc curAddressType:", curAddressType);
