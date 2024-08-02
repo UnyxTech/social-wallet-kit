@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.2.1
     version: 1.2.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
   '@tomo-inc/tomo-social-react':
-    specifier: ^0.1.18
-    version: 0.1.18(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
+    specifier: ^0.1.19
+    version: 0.1.19(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
   axios:
     specifier: ^1.6.2
     version: 1.7.2
@@ -814,8 +814,8 @@ packages:
       react: 18.3.1
     dev: false
 
-  /@tomo-inc/social-wallet-sdk@1.0.13(typescript@5.5.2):
-    resolution: {integrity: sha512-8lk98Az2ZTtgDPcQv8LKUjXnhvJ/6lhdx7/Cv3wJwTEHq4otIL34aM3mZZF/dNXXiHLtKyYZX+c0Bq2aJ5InsQ==}
+  /@tomo-inc/social-wallet-sdk@1.0.14(typescript@5.5.2):
+    resolution: {integrity: sha512-+iiAbSxls2lmpoeJqELb/YDHAw5sD9n2QlixG6CPmfSmvys6syLMYN5NmzvEq+WHA2EbMYlJjn4ECFK4gYUmYQ==}
     dependencies:
       '@solana/web3.js': 1.95.2
       '@types/crypto-js': 4.2.0
@@ -836,15 +836,15 @@ packages:
       - zod
     dev: false
 
-  /@tomo-inc/tomo-social-react@0.1.18(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
-    resolution: {integrity: sha512-QXKRkqYcPY9CGK98mT6XXHWt4dC5cu4ZZjx8mmLHeobA7K2KwHmI2NGEpxPpCvkGuCgPdQyBc96+zjDNx8dPdQ==}
+  /@tomo-inc/tomo-social-react@0.1.19(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
+    resolution: {integrity: sha512-RCSKQC0lU/V7cU+KMlqVcM+RXsm9QRDdvAr9Q3IILpDPnDh9qw0kbghZ6JZucZ4EVhgQdhvElRgGo+rsD8vY/g==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
       '@solana/web3.js': 1.95.2
       '@tanstack/react-query': 5.51.15(react@18.3.1)
-      '@tomo-inc/social-wallet-sdk': 1.0.13(typescript@5.5.2)
+      '@tomo-inc/social-wallet-sdk': 1.0.14(typescript@5.5.2)
       '@types/lodash': 4.17.7
       axios: 1.7.2
       bitcoinjs-lib: 6.1.6
