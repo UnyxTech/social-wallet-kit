@@ -22,6 +22,9 @@ export default function Demo() {
           'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
         }
         sdkMode={'dev'}
+        // clientId={
+        //   'yiPWTD4fztgEVS78HDUHoSFb4geppl2XTrhHZQUdGnh981bE13m2jrEwBhMlKNUNRWSoCYwD4ruOhWStuunYxMF0'
+        // }
         logLevel={'debug'}
       >
         <ChildComponent />

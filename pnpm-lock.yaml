@@ -14,9 +14,12 @@ dependencies:
   '@radix-ui/react-toast':
     specifier: ^1.2.1
     version: 1.2.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
+  '@tomo-inc/social-wallet-sdk':
+    specifier: ^1.0.15
+    version: 1.0.15(typescript@5.5.2)
   '@tomo-inc/tomo-social-react':
-    specifier: ^0.1.19
-    version: 0.1.19(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
+    specifier: ^0.1.20
+    version: 0.1.20(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2)
   axios:
     specifier: ^1.6.2
     version: 1.7.2
@@ -741,7 +744,7 @@ packages:
   /@scure/bip32@1.4.0:
     resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
     dependencies:
-      '@noble/curves': 1.4.2
+      '@noble/curves': 1.4.0
       '@noble/hashes': 1.4.0
       '@scure/base': 1.1.7
     dev: false
@@ -801,21 +804,21 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@tanstack/query-core@5.51.15:
-    resolution: {integrity: sha512-xyobHDJ0yhPE3+UkSQ2/4X1fLSg7ICJI5J1JyU9yf7F3deQfEwSImCDrB1WSRrauJkMtXW7YIEcC0oA6ZZWt5A==}
+  /@tanstack/query-core@5.51.21:
+    resolution: {integrity: sha512-POQxm42IUp6n89kKWF4IZi18v3fxQWFRolvBA6phNVmA8psdfB1MvDnGacCJdS+EOX12w/CyHM62z//rHmYmvw==}
     dev: false
 
-  /@tanstack/react-query@5.51.15(react@18.3.1):
-    resolution: {integrity: sha512-UgFg23SrdIYrmfTSxAUn9g+J64VQy11pb9/EefoY/u2+zWuNMeqEOnvpJhf52XQy0yztQoyM9p6x8PFyTNaxXg==}
+  /@tanstack/react-query@5.51.21(react@18.3.1):
+    resolution: {integrity: sha512-Q/V81x3sAYgCsxjwOkfLXfrmoG+FmDhLeHH5okC/Bp8Aaw2c33lbEo/mMcMnkxUPVtB2FLpzHT0tq3c+OlZEbw==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.51.15
+      '@tanstack/query-core': 5.51.21
       react: 18.3.1
     dev: false
 
-  /@tomo-inc/social-wallet-sdk@1.0.14(typescript@5.5.2):
-    resolution: {integrity: sha512-+iiAbSxls2lmpoeJqELb/YDHAw5sD9n2QlixG6CPmfSmvys6syLMYN5NmzvEq+WHA2EbMYlJjn4ECFK4gYUmYQ==}
+  /@tomo-inc/social-wallet-sdk@1.0.15(typescript@5.5.2):
+    resolution: {integrity: sha512-xMhRSfPzbdgI/wSzErfepf2iXmVCim8ZlbXojcfK4EHz/kRBbkzm8+FhH3xD0Dhsc2ICQ5kX+7LCmJtHF++5Bw==}
     dependencies:
       '@solana/web3.js': 1.95.2
       '@types/crypto-js': 4.2.0
@@ -826,7 +829,7 @@ packages:
       crypto-js: 4.2.0
       js-sha256: 0.11.0
       loglevel: 1.9.1
-      viem: 2.18.5(typescript@5.5.2)
+      viem: 2.18.8(typescript@5.5.2)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -836,15 +839,15 @@ packages:
       - zod
     dev: false
 
-  /@tomo-inc/tomo-social-react@0.1.19(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
-    resolution: {integrity: sha512-RCSKQC0lU/V7cU+KMlqVcM+RXsm9QRDdvAr9Q3IILpDPnDh9qw0kbghZ6JZucZ4EVhgQdhvElRgGo+rsD8vY/g==}
+  /@tomo-inc/tomo-social-react@0.1.20(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(typescript@5.5.2):
+    resolution: {integrity: sha512-Xk6VpvNRBgU3tlKhCbM7tC28xxwvio0sW0Lfzimtgg/7NCLBdJH0Hhetp8ZAJb+oHuYHYAk0YAXB6669YaMB+w==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
       '@solana/web3.js': 1.95.2
-      '@tanstack/react-query': 5.51.15(react@18.3.1)
-      '@tomo-inc/social-wallet-sdk': 1.0.14(typescript@5.5.2)
+      '@tanstack/react-query': 5.51.21(react@18.3.1)
+      '@tomo-inc/social-wallet-sdk': 1.0.15(typescript@5.5.2)
       '@types/lodash': 4.17.7
       axios: 1.7.2
       bitcoinjs-lib: 6.1.6
@@ -854,7 +857,7 @@ packages:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-qr-code: 2.0.15(react@18.3.1)
-      viem: 2.18.5(typescript@5.5.2)
+      viem: 2.18.8(typescript@5.5.2)
     transitivePeerDependencies:
       - '@types/react'
       - bufferutil
@@ -4005,8 +4008,8 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /viem@2.18.5(typescript@5.5.2):
-    resolution: {integrity: sha512-hIV5+kzI1f6fOzmZWuycjH+9F/qcEQ3BOyF0/m1cc+pd2+PMdJ/yccL4MeKAUDc1mun5KGjub9HhJsu+9Ndd3Q==}
+  /viem@2.18.8(typescript@5.5.2):
+    resolution: {integrity: sha512-Fi5d9fd/LBiVtJ5eV2c99yrdt4dJH5Vbkf2JajwCqHYuV4ErSk/sm+L6Ru3rzT67rfRHSOQibTZxByEBua/WLw==}
     peerDependencies:
       typescript: '>=5.0.4'
     peerDependenciesMeta:
@@ -4032,7 +4035,7 @@ packages:
   /webauthn-p256@0.0.5:
     resolution: {integrity: sha512-drMGNWKdaixZNobeORVIqq7k5DsRC9FnG201K2QjeOoQLmtSDaSsVZdkg6n5jUALJKcAG++zBPJXmv6hy0nWFg==}
     dependencies:
-      '@noble/curves': 1.4.2
+      '@noble/curves': 1.4.0
       '@noble/hashes': 1.4.0
     dev: false
 
