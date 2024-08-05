@@ -2,55 +2,57 @@
 import {
   TomoContextProvider,
   TomoSocial,
+  useChain,
+  useSettingChainsFlat,
   useTomoClientMap,
   useTomoModalControl,
+  useTomoProps,
   useTomoWalletConnect,
   useTomoWalletState
 } from '@tomo-inc/tomo-social-react'
 import '@tomo-inc/tomo-social-react/style.css'
-import {useState} from "react";
+import { useLoading } from '@/hooks/useLoading'
+import React from 'react'
 
 export default function Demo() {
-  // if (typeof window === undefined) {
-  //   return <div></div> 
-  // }
-  if (typeof window !== undefined) {
-    return (
-      <TomoContextProvider
-        evmDefaultChainId={1}
-        clientId={
-          'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
-        }
-        sdkMode={'dev'}
-        // clientId={
-        //   'yiPWTD4fztgEVS78HDUHoSFb4geppl2XTrhHZQUdGnh981bE13m2jrEwBhMlKNUNRWSoCYwD4ruOhWStuunYxMF0'
-        // }
-        logLevel={'debug'}
-      >
-        <ChildComponent />
-        {/* <div>hello</div> */}
-      </TomoContextProvider>
-    )
-  } else {
-    return <div></div>
-  }
-
-  // return <div></div>
+  return (
+    <TomoContextProvider
+      evmDefaultChainId={1}
+      clientId={
+        'bCMfq7lAMPobDhf6kWAHAPtO5Ct6YuA77W9SzhjUixFwOOi0f92vsdJpkAhn0W4tg8TVSeTNUSvBOC3MXYRuIH0Z'
+      }
+      sdkMode={'dev'}
+    >
+      <ChildComponent />
+    </TomoContextProvider>
+  )
 }
 
-function ChildComponent() {
+export function ChildComponent() {
   const tomoModal = useTomoModalControl()
   const tomoWalletState = useTomoWalletState()
   const tomoClientMap = useTomoClientMap()
+  const settingChainsFlat = useSettingChainsFlat()
+  const chain = useChain()
+  const tomoProps = useTomoProps()
   const tomoWalletConnect = useTomoWalletConnect()
+
+  const bnbChain = settingChainsFlat.find((item) => {
+    return item.id === 56 && item.type === 'evm'
+  })
+
+  const bitcoinSignetChain = settingChainsFlat.find((item) => {
+    return item.networkName === 'signet' && item.type === 'bitcoin'
+  })
+
   return (
-    <div className={'tomo-social tm-flex tm-h-screen tm-w-screen'}>
+    <div className={'flex h-screen w-screen'}>
       <div
         className={
-          'tm-flex tm-h-full tm-flex-1 tm-flex-col tm-gap-4 tm-border-r tm-border-r-black/10 tm-px-10 tm-py-10 tm-overflow-auto'
+          'hidden h-full flex-col text-sm gap-4 overflow-auto border-r border-r-black/10 p-10 md:flex md:flex-1'
         }
       >
-        <div className={'tm-flex tm-gap-3 tm-flex-wrap'}>
+        <div className={'flex flex-wrap gap-3'}>
           <LodingButton
             onClick={() => {
               tomoModal.open()
@@ -71,28 +73,44 @@ function ChildComponent() {
               await tomoWalletConnect.switchChainType('solana')
             }}
           >
-            switch to solana
-          </LodingButton>
-          <LodingButton
-            onClick={async () => {
-              await tomoWalletConnect.switchChainType('bitcoin')
-            }}
-          >
-            switch to bitcoin
+            switch to solana chain
           </LodingButton>
           <LodingButton
             onClick={async () => {
               await tomoWalletConnect.switchChainType('evm')
             }}
           >
-            switch to evm
+            switch to evm chain
+          </LodingButton>
+
+          <LodingButton
+            onClick={async () => {
+              await tomoWalletConnect.switchChain(bitcoinSignetChain)
+            }}
+          >
+            switch to {bitcoinSignetChain?.name}
+          </LodingButton>
+
+          <LodingButton
+            onClick={async () => {
+              await tomoWalletConnect.switchChain(bnbChain)
+            }}
+          >
+            switch to {bnbChain?.name}
           </LodingButton>
         </div>
 
         <ShowJson obj={tomoWalletState} title={'useTomoWalletState'} />
+        <ShowJson obj={chain} title={'useChain'} />
         <ShowJson obj={tomoClientMap} title={'useTomoClientMap'} />
+        <ShowJson obj={settingChainsFlat} title={'useSettingChainsFlat'} />
+        <ShowJson obj={tomoProps} title={'useTomoProps'} />
       </div>
-      <div className={'tm-flex tm-flex-col tm-gap-4 tm-px-20 tm-py-10'}>
+      <div
+        className={
+          'flex h-full w-full flex-col items-center gap-4 overflow-auto bg-gray-100 px-4 py-10 md:w-auto md:px-20'
+        }
+      >
         <div>tomo social</div>
         <TomoSocial />
       </div>
@@ -112,18 +130,25 @@ function LodingButton({
   return (
     <button
       {...otherProps}
+      className={'border border-black px-2'}
       disabled={loading || disabled}
       onClick={() => {
-        loadingFn(onClick as any)
+        loadingFn(onClick)
       }}
     />
   )
 }
 
-function ShowJson({ title, obj, rows = 10 }: {title: any, obj: any, rows?: number}) {
+const ShowJson = React.memo(function ShowJson({ title, obj, rows = 10 }) {
   const jsonFn = function jsonValueFn(key, value) {
     if (key && this !== obj) {
-      return 'any'
+      if (typeof value === 'object' || typeof value === 'function') {
+        if (Array.isArray(value)) {
+          return `Array(${value.length})`
+        }
+        return 'object'
+      }
+      return value
     }
     return value
   }
@@ -132,58 +157,11 @@ function ShowJson({ title, obj, rows = 10 }: {title: any, obj: any, rows?: numbe
       <div>{title}: </div>
       <textarea
         value={JSON.stringify(obj, jsonFn, '\t')}
-        className={'tm-w-full'}
+        className={'w-full border p-1'}
         rows={rows}
+        readOnly
       ></textarea>
     </div>
   )
-}
+})
 
-
-const loadState = {
-  getNextState(cur: boolean | number, change: number) {
-    if (!cur || typeof cur === 'boolean') {
-      cur = 0
-    }
-    return cur + change
-  },
-  createFn(changeLoadFn: Function) {
-    return async function <T>(
-      promise: Promise<T> | Function | Boolean
-    ): Promise<T> {
-      if (typeof promise === 'boolean') {
-        changeLoadFn(promise ? 1 : -1)
-        // @ts-ignore
-        return
-      }
-      changeLoadFn(1)
-      let result
-      try {
-        if (typeof promise === 'function') {
-          result = await promise()
-        } else {
-          result = await promise
-        }
-      } catch (e) {
-        changeLoadFn(-1)
-        throw e
-      }
-      changeLoadFn(-1)
-      return result
-    }
-  }
-}
-
-function useLoading(
-  initValue: boolean | number = false
-): [boolean, <T>(promise: Promise<T> | Function | Boolean) => Promise<T>] {
-  const [loading, setLoading] = useState<boolean | number>(initValue)
-  return [
-    !!loading,
-    loadState.createFn((change: number) => {
-      setLoading((prev: boolean | number) =>
-        loadState.getNextState(prev, change)
-      )
-    })
-  ]
-}
