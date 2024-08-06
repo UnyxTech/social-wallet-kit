@@ -11,8 +11,7 @@ export const useTomoSDK = () => {
       const {TomoSDK, EthereumProvider, BitcoinProvider, SolanaProvider} = await import('@tomo-inc/social-wallet-sdk');
 
       const chainConfig = {
-        chainId: '0x1',
-        rpcUrl: 'https://cloudflare-eth.com',
+        chainId: 1,
       }
       const ethProvider = new EthereumProvider(chainConfig)
       const solanaProvider = new SolanaProvider()
