@@ -10,3 +10,8 @@ export const getCommonInfos = async (sdk: any) => {
   // const checkEmail = await sdk.sendCode('social1@aaa.com')
   // console.log('checkEmail:', checkEmail)
 }
+
+export const bindTwitter = async (sdk: any) => {
+  const res = await sdk.twitterBind()
+  console.log('%c bindTwitter ==>', 'color: red', res)
+}

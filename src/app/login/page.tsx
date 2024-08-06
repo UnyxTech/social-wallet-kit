@@ -45,7 +45,7 @@ import {
   signSolTxs,
 } from "@/lib/sol-actions";
 import { useTomoSDK } from "@/hooks";
-import { getCommonInfos } from "@/lib/common-actions";
+import { getCommonInfos, bindTwitter } from "@/lib/common-actions";
 interface IProps {}
 
 const Login: React.FC<IProps> = () => {
@@ -343,6 +343,15 @@ const Login: React.FC<IProps> = () => {
               }}
             >
               create passkey
+            </TButton>
+            <TButton
+              className="px-[16px] w-fit ml-[8px]"
+              type="blue"
+              onClick={async () => {
+                bindTwitter(tomoSDK);
+              }}
+            >
+              bind twitter
             </TButton>
           </div>
         </div>

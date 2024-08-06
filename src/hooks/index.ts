@@ -9,6 +9,7 @@ export const useTomoSDK = () => {
       }
 
       const {TomoSDK, EthereumProvider, BitcoinProvider, SolanaProvider} = await import('@tomo-inc/social-wallet-sdk');
+      // const {TomoSDK, EthereumProvider, BitcoinProvider, SolanaProvider} = await import('../../../tomo-social-sdk/src/index');
 
       const chainConfig = {
         chainId: 1,
