@@ -14,8 +14,20 @@ import '@tomo-inc/tomo-social-react/style.css'
 import { useLoading } from '@/hooks/useLoading'
 import React from 'react'
 
+const isProd = process.env.NEXT_PUBLIC_PRODUCT === "prod"
+
 export default function Demo() {
   return (
+    isProd ?
+    <TomoContextProvider
+      evmDefaultChainId={1}
+      clientId={
+        'yiPWTD4fztgEVS78HDUHoSFb4geppl2XTrhHZQUdGnh981bE13m2jrEwBhMlKNUNRWSoCYwD4ruOhWStuunYxMF0'
+      }
+    >
+      <ChildComponent />
+    </TomoContextProvider> 
+    :
     <TomoContextProvider
       evmDefaultChainId={1}
       clientId={
