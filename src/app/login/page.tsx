@@ -38,7 +38,7 @@ export default function Demo() {
       evmDefaultChainId={1}
       {...tomoProps}
       style={style}
-      useServerSettings={true}
+      // useServerSettings={true}
       // onlySocial={true}
       // socialTypes={['google', 'email']}
       // indexWallets={['metaMask', 'tomoWallet', 'bitcoin_okx', 'allWallet']}
