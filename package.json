@@ -14,6 +14,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@tomo-inc/tomo-social-react": "^0.2.18-beta",
+    "@tomo-inc/social-wallet-sdk": "^1.0.21-beta",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
