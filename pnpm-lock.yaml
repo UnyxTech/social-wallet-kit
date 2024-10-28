@@ -18,8 +18,8 @@ importers:
         specifier: ^1.2.1
         version: 1.2.2(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tomo-inc/tomo-social-react':
-        specifier: ^0.2.18-beta.1
-        version: 0.2.18-beta.1(@types/react@18.3.11)(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
+        specifier: ^0.2.18
+        version: 0.2.18(@types/react@18.3.11)(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
       axios:
         specifier: ^1.6.2
         version: 1.7.7
@@ -1738,11 +1738,11 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@tomo-inc/social-wallet-sdk@1.0.21-beta.2':
-    resolution: {integrity: sha512-5DBv18np12QKGWxmxbKF382c71amwoZjj7zRSetIsWMeZ7mAyONmWAZ/Px8fFxQ79RMkDTPTsBp0m0sCr67kNw==}
+  '@tomo-inc/social-wallet-sdk@1.0.21':
+    resolution: {integrity: sha512-QEtAzEY8GJnd1R4lr+tYOnSUjv//7+rePGCznaUZGzb0JXSaEXN8jPUrkY9xvoLSAOspZHXXc+huxE82l4/vbA==}
 
-  '@tomo-inc/tomo-social-react@0.2.18-beta.1':
-    resolution: {integrity: sha512-9fpLvKWj/0/ZJIfm+i3N3qohSKicmiV26KFrqGAYgxw4XCVdoQGpKgItGD7RXl3kVQzWYHMnepVZcrQEpGK1iA==}
+  '@tomo-inc/tomo-social-react@0.2.18':
+    resolution: {integrity: sha512-04YgXvhASD4Q0pidFT03fGpzIbha6tr40/1DxMAEQs19dHoiWb4cQsl23R/Lhh3ZpcR6gaRfWKfFl253kYm4xg==}
     peerDependencies:
       react: ^18
       react-dom: ^18
@@ -1913,6 +1913,7 @@ packages:
   '@xmldom/xmldom@0.7.13':
     resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version is no longer supported, please update to at least 0.8.*
 
   '@xmldom/xmldom@0.8.10':
     resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
@@ -8584,7 +8585,7 @@ snapshots:
       '@tanstack/query-core': 5.59.9
       react: 18.3.1
 
-  '@tomo-inc/social-wallet-sdk@1.0.21-beta.2(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
+  '@tomo-inc/social-wallet-sdk@1.0.21(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
     dependencies:
       '@mysten/sui': 1.12.0(typescript@5.6.3)
       '@solana/web3.js': 1.95.3(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -8612,11 +8613,11 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@tomo-inc/tomo-social-react@0.2.18-beta.1(@types/react@18.3.11)(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
+  '@tomo-inc/tomo-social-react@0.2.18(@types/react@18.3.11)(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
     dependencies:
       '@solana/web3.js': 1.95.3(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@tanstack/react-query': 5.59.9(react@18.3.1)
-      '@tomo-inc/social-wallet-sdk': 1.0.21-beta.2(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
+      '@tomo-inc/social-wallet-sdk': 1.0.21(bufferutil@4.0.8)(expo@51.0.37(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-native@0.75.4(@babel/core@7.25.8)(@babel/preset-env@7.25.8(@babel/core@7.25.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10))(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
       '@tomo-inc/tomo-wallet-provider': 1.0.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/lodash': 4.17.10
       animate.css: 4.1.1
