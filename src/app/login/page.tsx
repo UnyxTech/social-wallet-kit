@@ -33,7 +33,7 @@ export default function Demo() {
   const [style, setStyle] = useState<TomoProviderSetting["style"]>({
     rounded: "default",
     theme: "dark",
-    primaryColor: "#F5E17A",
+    primaryColor: "#E2C695",
   });
 
   return (
