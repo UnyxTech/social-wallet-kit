@@ -32,8 +32,8 @@ const tomoProps = isProd
 export default function Demo() {
   const [style, setStyle] = useState<TomoProviderSetting["style"]>({
     rounded: "default",
-    theme: "dark",
-    primaryColor: "#E2C695",
+    theme: "light",
+    primaryColor: "#121212",
   });
 
   return (
