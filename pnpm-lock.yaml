@@ -21,8 +21,8 @@ importers:
         specifier: ^1.0.25-beta
         version: 1.0.25-beta(bufferutil@4.0.8)(expo@51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-native@0.76.1(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
       '@tomo-inc/tomo-social-react':
-        specifier: ^0.2.25-beta.1
-        version: 0.2.25-beta.1(@bitcoinerlab/secp256k1@1.1.1)(@cosmjs/stargate@0.32.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@keplr-wallet/types@0.12.159(starknet@6.11.0))(@keystonehq/animated-qr@0.8.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@keystonehq/keystone-sdk@0.4.1)(@keystonehq/sdk@0.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@scure/bip32@1.5.0)(@types/react@18.3.12)(bufferutil@4.0.8)(expo@51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.1(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
+        specifier: ^0.2.26-beta.1
+        version: 0.2.26-beta.1(@bitcoinerlab/secp256k1@1.1.1)(@cosmjs/stargate@0.32.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@keplr-wallet/types@0.12.159(starknet@6.11.0))(@keystonehq/animated-qr@0.8.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@keystonehq/keystone-sdk@0.4.1)(@keystonehq/sdk@0.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@scure/bip32@1.5.0)(@types/react@18.3.12)(bufferutil@4.0.8)(expo@51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.1(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)
       axios:
         specifier: ^1.6.2
         version: 1.7.7
@@ -1847,8 +1847,8 @@ packages:
   '@tomo-inc/social-wallet-sdk@1.0.26-beta':
     resolution: {integrity: sha512-3Abepd2wcGHnfuGm3HSHbkk/+4KTuAlL8hZvrfKdf9EEmjERT4cxdekH6JCPiRVVtbM0RUQFnYqCymxIrAaHXA==}
 
-  '@tomo-inc/tomo-social-react@0.2.25-beta.1':
-    resolution: {integrity: sha512-ykx9RBZy9+Ke8IlErlBy5zzBmquMJcIu1VPAJLa06EdcYjRIh1glUKzxhzCHOrYdKD9Eymh+WtoBfIARu2/W/g==}
+  '@tomo-inc/tomo-social-react@0.2.26-beta.1':
+    resolution: {integrity: sha512-LxPXnWCnpE2CEHwoeoQA+Tqx6t3qihaUqnTNPzRBfhkAAfZ2lgcSgmOfdp09IRGBaK0iPhDxUYEOd/Y/vF2nmA==}
     peerDependencies:
       react: ^18
       react-dom: ^18
@@ -8784,7 +8784,7 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@tomo-inc/tomo-social-react@0.2.25-beta.1(@bitcoinerlab/secp256k1@1.1.1)(@cosmjs/stargate@0.32.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@keplr-wallet/types@0.12.159(starknet@6.11.0))(@keystonehq/animated-qr@0.8.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@keystonehq/keystone-sdk@0.4.1)(@keystonehq/sdk@0.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@scure/bip32@1.5.0)(@types/react@18.3.12)(bufferutil@4.0.8)(expo@51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.1(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
+  '@tomo-inc/tomo-social-react@0.2.26-beta.1(@bitcoinerlab/secp256k1@1.1.1)(@cosmjs/stargate@0.32.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))(@keplr-wallet/types@0.12.159(starknet@6.11.0))(@keystonehq/animated-qr@0.8.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@keystonehq/keystone-sdk@0.4.1)(@keystonehq/sdk@0.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@scure/bip32@1.5.0)(@types/react@18.3.12)(bufferutil@4.0.8)(expo@51.0.38(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.1(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@types/react@18.3.12)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@5.0.10))(react@18.3.1)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.23.8)':
     dependencies:
       '@binance/w3w-utils': 1.1.6
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -10300,7 +10300,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.2(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.1)
@@ -10331,7 +10331,7 @@ snapshots:
       is-bun-module: 1.2.1
       is-glob: 4.0.3
     optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
       - eslint-import-resolver-node
@@ -10349,7 +10349,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
